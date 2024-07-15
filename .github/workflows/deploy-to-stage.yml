@@ -1,0 +1,60 @@
+name: Build and Push to STAGE
+
+on:
+  #TODO: Change this to dynamically set version. This is only for testing
+  workflow_dispatch:
+env:
+  ACR_NAME: ${{ secrets.ACR_NAME }}
+  ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    environment: STAGE
+    steps:
+      - name: Checkout repository # Checking Out
+        uses: actions/checkout@v2
+      #  az login --service-principal -u ${{ secrets.CLIENTID }}  -p ${{ secrets.CLIENTSECRET }} --tenant ${{ secrets.TENANTID }}
+      - name: Azure and ACR Login
+        run: |
+          az acr login --name ${{ env.ACR_NAME }} -u ${{ secrets.CLIENTID}} -p ${{ secrets.CLIENTSECRET }}
+
+      - name: Display Branch Name
+        run: |
+          echo "Branch Name: ${{ github.ref }}"
+
+      - name: Build and push Docker image
+        run: |
+          VERSION=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION=v2.0
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            VERSION=v2.0
+          else
+            VERSION=$(git rev-parse --short HEAD)
+          fi
+
+          docker build -t ${{ env.ACR_LOGIN_SERVER }}/${{ env.ACR_NAME }}:$VERSION .
+          docker push ${{ env.ACR_LOGIN_SERVER }}/${{ env.ACR_NAME }}:$VERSION
+
+      - name: Update Web App Configuration
+        run: |
+          VERSION="" 
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION=v2.0
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            VERSION=v2.0
+          else
+            VERSION=$(git rev-parse --short HEAD)
+          fi
+
+          az login --service-principal -u ${{ secrets.CLIENTID }} -p ${{ secrets.CLIENTSECRET }} --tenant ${{ secrets.TENANTID }}
+          az acr login --name ${{ env.ACR_NAME }} -u ${{ secrets.CLIENTID}} -p ${{ secrets.CLIENTSECRET }}
+          az webapp config container set --name cokechat --slot stage \
+                                         --resource-group ${{ secrets.RESOURCE_GROUP }} \
+                                         --docker-custom-image-name ${{ env.ACR_LOGIN_SERVER }}/${{ env.ACR_NAME }}:$VERSION \
+                                         --docker-registry-server-url ${{ env.ACR_LOGIN_SERVER }}
+      - name: Restart Web App
+        run: |
+          az webapp restart --name cokechat --slot stage \
+                            --resource-group ${{ secrets.RESOURCE_GROUP }}
