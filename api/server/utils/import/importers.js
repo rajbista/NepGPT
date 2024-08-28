@@ -24,9 +24,9 @@ function getImporter(jsonData) {
     return importChatBotUiConvo;
   }
 
-  // For CokeGPT
+  // For NepGPT
   if (jsonData.conversationId && (jsonData.messagesTree || jsonData.messages)) {
-    logger.info('Importing CokeGPT conversation');
+    logger.info('Importing NepGPT conversation');
     return importLibreChatConvo;
   }
 
@@ -71,7 +71,7 @@ async function importChatBotUiConvo(
 }
 
 /**
- * Imports a CokeGPT conversation from JSON.
+ * Imports a NepGPT conversation from JSON.
  *
  * @param {Object} jsonData - The JSON data representing the conversation.
  * @param {string} requestUserId - The ID of the user making the import request.
@@ -168,7 +168,7 @@ async function importLibreChatConvo(
         importBatchBuilder.saveMessage(clonedMessage);
       }
     } else {
-      throw new Error('Invalid CokeGPT file format');
+      throw new Error('Invalid NepGPT file format');
     }
 
     if (firstMessageDate === 'Invalid Date') {
@@ -179,7 +179,7 @@ async function importLibreChatConvo(
     await importBatchBuilder.saveBatch();
     logger.debug(`user: ${requestUserId} | Conversation "${jsonData.title}" imported`);
   } catch (error) {
-    logger.error(`user: ${requestUserId} | Error creating conversation from CokeGPT file`, error);
+    logger.error(`user: ${requestUserId} | Error creating conversation from NepGPT file`, error);
   }
 }
 

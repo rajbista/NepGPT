@@ -18,13 +18,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danny-avila/CokeGPT.git"
+    "url": "git+https://github.com/danny-avila/NepGPT.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/danny-avila/CokeGPT/issues"
+    "url": "https://github.com/danny-avila/NepGPT/issues"
   },
   "homepage": "https://librechat.ai",
   "dependencies": {

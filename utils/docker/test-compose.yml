@@ -3,7 +3,7 @@ services:
   # api:
   #     - HOST=0.0.0.0
   #     - NODE_ENV=production
-  #     - MONGO_URI=mongodb://mongodb:27017/CokeGPT
+  #     - MONGO_URI=mongodb://mongodb:27017/NepGPT
   #     - MEILI_HOST=http://meilisearch:7700
   #     - RAG_PORT=${RAG_PORT:-8000}
   #     - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
@@ -12,7 +12,7 @@ services:
       context: .
       dockerfile: Dockerfile.multi
       target: prod-stage
-    container_name: CokeGPT-NGINX
+    container_name: NepGPT-NGINX
     ports:
       - 80:80
       - 443:443

@@ -84,7 +84,7 @@ async function validateDockerRunning() {
     }down`;
     console.orange(downCommand);
     execSync(downCommand, { stdio: 'inherit' });
-    console.purple('Pruning all CokeGPT Docker images...');
+    console.purple('Pruning all NepGPT Docker images...');
 
     const imageName = singleCompose ? 'librechat_single' : 'librechat';
     try {
@@ -94,7 +94,7 @@ async function validateDockerRunning() {
     }
     console.purple('Removing all unused dangling Docker images...');
     execSync(`${sudo}docker image prune -f`, { stdio: 'inherit' });
-    console.purple('Building new CokeGPT image...');
+    console.purple('Building new NepGPT image...');
     const buildCommand = `${sudo}docker compose ${
       singleCompose ? '-f ./docs/dev/single-compose.yml ' : ''
     }build --no-cache`;
@@ -123,10 +123,10 @@ async function validateDockerRunning() {
       singleCompose ? '-f ./docs/dev/single-compose.yml ' : ''
     }up`;
   }
-  console.green('Your CokeGPT app is now up to date! Start the app with the following command:');
+  console.green('Your NepGPT app is now up to date! Start the app with the following command:');
   console.purple(startCommand);
   console.orange(
-    'Note: it\'s also recommended to clear your browser cookies and localStorage for CokeGPT to assure a fully clean installation.',
+    'Note: it\'s also recommended to clear your browser cookies and localStorage for NepGPT to assure a fully clean installation.',
   );
   console.orange('Also: Don\'t worry, your data is safe :)');
 })();

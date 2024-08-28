@@ -44,7 +44,7 @@ export default function Footer({ className }: { className?: string }) {
   const mainContentParts = (
     typeof config?.customFooter === 'string'
       ? config.customFooter
-      : '[CokeGPT ' +
+      : '[NepGPT ' +
         Constants.VERSION +
         '](https://librechat.ai) - ' +
         localize('com_ui_latest_footer')

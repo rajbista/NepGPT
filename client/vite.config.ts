@@ -64,8 +64,8 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
       },
       manifest: {
-        name: 'CokeGPT',
-        short_name: 'CokeGPT',
+        name: 'NepGPT',
+        short_name: 'NepGPT',
         start_url: '/',
         display: 'standalone',
         background_color: '#000000',

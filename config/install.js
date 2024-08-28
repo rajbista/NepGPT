@@ -58,13 +58,13 @@ let env = {};
 
 (async () => {
   // Lets colour the console
-  console.purple('=== CokeGPT First Install ===');
+  console.purple('=== NepGPT First Install ===');
   console.blue('Note: Leave blank to use the default value.');
   console.log(''); // New line
 
   // Ask for the app title
-  const title = await askQuestion('Enter the app title (default: "CokeGPT"): ');
-  env['APP_TITLE'] = title || 'CokeGPT';
+  const title = await askQuestion('Enter the app title (default: "NepGPT"): ');
+  env['APP_TITLE'] = title || 'NepGPT';
 
   // Ask for OPENAI_API_KEY
   const key = await askQuestion('Enter your OPENAI_API_KEY (default: "user_provided"): ');
@@ -72,9 +72,9 @@ let env = {};
 
   // Ask about mongodb
   const mongodb = await askQuestion(
-    'What is your mongodb url? (default: mongodb://127.0.0.1:27018/CokeGPT)',
+    'What is your mongodb url? (default: mongodb://127.0.0.1:27018/NepGPT)',
   );
-  env['MONGO_URI'] = mongodb || 'mongodb://127.0.0.1:27018/CokeGPT';
+  env['MONGO_URI'] = mongodb || 'mongodb://127.0.0.1:27018/NepGPT';
   // Very basic check to make sure they entered a url
   if (!env['MONGO_URI'].includes('://')) {
     console.orange(

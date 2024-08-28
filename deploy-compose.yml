@@ -6,7 +6,7 @@ services:
     #   dockerfile: Dockerfile.multi
     #   target: api-build
     image: ghcr.io/danny-avila/librechat-dev-api:latest
-    container_name: CokeGPT-API
+    container_name: NepGPT-API
     ports:
       - 3080:3080
     depends_on:
@@ -20,7 +20,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - NODE_ENV=production
-      - MONGO_URI=mongodb://mongodb:27017/CokeGPT
+      - MONGO_URI=mongodb://mongodb:27017/NepGPT
       - MEILI_HOST=http://meilisearch:7700
       - RAG_PORT=${RAG_PORT:-8000}
       - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
@@ -35,7 +35,7 @@ services:
       context: .
       dockerfile: Dockerfile.multi
       target: prod-stage
-    container_name: CokeGPT-NGINX
+    container_name: NepGPT-NGINX
     ports:
       - 80:80
       - 443:443

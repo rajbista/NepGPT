@@ -1,5 +1,5 @@
 {
-  "name": "CokeGPT",
+  "name": "NepGPT",
   "version": "0.1.0",
   "description": "",
   "workspaces": [
@@ -62,7 +62,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/The-Coca-Cola-Company/et-CokeGPT"
+    "url": "https://github.com/The-Coca-Cola-Company/et-NepGPT"
   },
   "author": "",
   "license": "ISC",

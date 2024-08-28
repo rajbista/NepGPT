@@ -40,7 +40,7 @@ const shouldRebase = process.argv.includes('--rebase');
   console.orange(downCommand);
   execSync(downCommand, { stdio: 'inherit' });
 
-  console.purple('Removing all tags for CokeGPT `deployed` images...');
+  console.purple('Removing all tags for NepGPT `deployed` images...');
   const repositories = ['ghcr.io/danny-avila/librechat-dev-api', 'librechat-client'];
   repositories.forEach((repo) => {
     const tags = execSync(`sudo docker images ${repo} -q`, { encoding: 'utf8' })
@@ -53,16 +53,16 @@ const shouldRebase = process.argv.includes('--rebase');
     });
   });
 
-  console.purple('Pulling latest CokeGPT images...');
+  console.purple('Pulling latest NepGPT images...');
   const pullCommand = 'sudo docker-compose -f ./deploy-compose.yml pull api';
   console.orange(pullCommand);
   execSync(pullCommand, { stdio: 'inherit' });
 
   let startCommand = 'sudo docker-compose -f ./deploy-compose.yml up -d';
-  console.green('Your CokeGPT app is now up to date! Start the app with the following command:');
+  console.green('Your NepGPT app is now up to date! Start the app with the following command:');
   console.purple(startCommand);
   console.orange(
-    'Note: it\'s also recommended to clear your browser cookies and localStorage for CokeGPT to assure a fully clean installation.',
+    'Note: it\'s also recommended to clear your browser cookies and localStorage for NepGPT to assure a fully clean installation.',
   );
   console.orange('Also: Don\'t worry, your data is safe :)');
 })();

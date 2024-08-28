@@ -1165,7 +1165,7 @@
  * @typedef {Object} ResponseMessage
  * @property {string} conversationId - The ID of the conversation.
  * @property {string} thread_id - The ID of the thread.
- * @property {string} messageId - The ID of the message (from CokeGPT).
+ * @property {string} messageId - The ID of the message (from NepGPT).
  * @property {string} parentMessageId - The ID of the parent message.
  * @property {string} user - The ID of the user.
  * @property {string} assistant_id - The ID of the assistant.
